@@ -4,15 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import javax.inject.Inject
 
+/*
+If the component is not a application level - even though class is @Singleton, new object got created for class.
+ */
+
 class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var userRegistrationService:UserRegistrationService
 
-    @Inject
-    lateinit var emailService:EmailService
 
-    @Inject
+    lateinit var emailService:EmailService
     lateinit var emailService1:EmailService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +23,10 @@ class MainActivity : AppCompatActivity() {
 
         val component = DaggerUserRegistrationComponent.factory().create(3)
 
-//        val userRegistrationService = component.getUserRegistrationService()
-//        val emailService = component.getEmailService()
+         emailService = component.getEmailService()
+
+         val component1 = DaggerUserRegistrationComponent.factory().create(3)
+         emailService1 = component1.getEmailService()
 
         component.inject(this)
 

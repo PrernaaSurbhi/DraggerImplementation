@@ -14,6 +14,8 @@ import javax.inject.Singleton
 interface UserRegistrationComponent {
     fun inject(mainActivity: MainActivity)
 
+    fun getEmailService():EmailService
+
     @Component.Factory
     interface Factory{
         fun create(@BindsInstance retryCount:Int):UserRegistrationComponent

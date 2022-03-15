@@ -1,5 +1,6 @@
 package com.example.draggerimplementation
 
+import dagger.BindsInstance
 import dagger.Component
 
 /**
@@ -8,7 +9,14 @@ import dagger.Component
  * @Component is the connector interface between dragger consumer and Provider .
  */
 
-@Component(modules = [NotificationServiceModule::class,UserRepositoryModule::class])
+@Component(modules = [NotificationServiceModule::class, UserRepositoryModule::class])
 interface UserRegistrationComponent {
     fun inject(mainActivity: MainActivity)
+
+    @Component.Factory
+    interface Factory{
+        fun create(@BindsInstance retryCount:Int):UserRegistrationComponent
+    }
 }
+
+

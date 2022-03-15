@@ -11,12 +11,12 @@ import javax.inject.Named
  * @Named - it is the qualifier
  */
 @Module
-class NotificationServiceModule {
+class NotificationServiceModule(){
 
     @MessageQualifier
     @Provides
-    fun getMsgService():NotificationService{
-        return MessageService()
+    fun getMsgService(retryCount :Int):NotificationService{
+        return MessageService(retryCount)
     }
 
     @Named("email")

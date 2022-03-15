@@ -8,8 +8,7 @@ import dagger.Component
  * @Component is the connector interface between dragger consumer and Provider .
  */
 
-@Component
+@Component(modules = [NotificationServiceModule::class,UserRepositoryModule::class])
 interface UserRegistrationComponent {
-    fun getUserRegistrationService():UserRegistrationService
-    fun getEmailService():EmailService
+    fun inject(mainActivity: MainActivity)
 }

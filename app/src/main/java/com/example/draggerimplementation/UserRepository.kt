@@ -6,12 +6,26 @@ import javax.inject.Inject
 /**
  * Created by PrernaSurbhi on 15/03/22.
  */
-class UserRepository @Inject constructor() {
-    fun saveUser(email:String,password:String){
+interface UserRepository{
+    fun saveUser(email:String,password:String)
+}
+
+class SqlRepository @Inject constructor() :UserRepository{
+  override  fun saveUser(email:String,password:String){
         Log.d(TAG,"user saved in data base")
     }
 
     companion object{
-        const val TAG ="UserRepository"
+        const val TAG ="SqlRepository"
+    }
+}
+
+class FireBaseRepository :UserRepository{
+    override  fun saveUser(email:String,password:String){
+        Log.d(TAG,"fire base repositories")
+    }
+
+    companion object{
+        const val TAG ="FireBaseRepository"
     }
 }
